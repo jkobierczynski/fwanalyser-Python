@@ -1,0 +1,5 @@
+# No external dependencies required - fwanalyser runs on the Python 3
+# standard library alone (ipaddress, dataclasses, argparse, json, html, re).
+#
+# Optional, for performance on very large log volumes:
+#   pytricia   # drop-in-ish faster C-extension trie; see BUGS_AND_CHANGES.md "Performance"

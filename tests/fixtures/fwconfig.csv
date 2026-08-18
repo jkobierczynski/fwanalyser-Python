@@ -1,0 +1,20 @@
+# Synthetic Check Point-style object/rulebase export for smoke testing.
+# Columns are positional, comma separated (matches the original tool's format).
+
+WebServer1,host,10.1.1.10
+WebServer2,host,10.1.1.11
+InternalNet,net,10.1.0.0,16
+DMZ,net,172.16.1.0,24
+WebServers,group,WebServer1
+WebServers,group,WebServer2
+HTTP,tcp,80
+HTTPS,tcp,443
+Echo,icmp,8
+WebServices,srvgroup,HTTP
+WebServices,srvgroup,HTTPS
+
+rulebase_header,MainPolicy
+security_rule,InternalNet,WebServers,,WebServices,accept,log,gw-fw1,,Allow internal clients to web servers
+security_rule,Any,DMZ,,Echo,accept,log,gw-fw1,,Allow ping to DMZ
+disabled_sec_rule,Any,Any,,Any,drop,log,gw-fw1,,Old disabled catch rule
+security_rule,Any,Any,,Any,drop,log,gw-fw1,,Cleanup rule
